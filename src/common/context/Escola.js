@@ -10,6 +10,7 @@ export const EscolaProvider = ({ children }) => {
   const [cnpj, setCnpj] = React.useState("");
   const [telefone, setTelefone] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [nivel, setNivel] = React.useState([]);
   const [cep, setCep] = React.useState("");
   const [logradouro, setLogradouro] = React.useState("");
   const [numero, setNumero] = React.useState("");
@@ -62,6 +63,8 @@ export const EscolaProvider = ({ children }) => {
         setTelefone,
         email,
         setEmail,
+        nivel,
+        setNivel,
         cep,
         setCep,
         logradouro,

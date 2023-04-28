@@ -1,6 +1,7 @@
 import React from "react";
-import { Box, Button, TextField } from "@mui/material";
+import { Button } from "@mui/material";
 import { EscolaContext } from "common/context/Escola";
+import MyForm from "components/MyForm";
 
 export default function Escola() {
   const {
@@ -12,6 +13,8 @@ export default function Escola() {
     setTelefone,
     email,
     setEmail,
+    nivel,
+    setNivel,
     cep,
     setCep,
     logradouro,
@@ -59,6 +62,14 @@ export default function Escola() {
       gridColumn: "span 6",
       value: email,
       onChange: (event) => setEmail(event.target.value),
+    },
+    {
+      label: "Niveis de ensino",
+      name: "niveis",
+      gridColumn: "span 6",
+      value: nivel,
+      select: ["fundamenta", "medio"],
+      onChange: (event) => setNivel(event.target.value),
     },
     {
       label: "CEP",
@@ -109,25 +120,7 @@ export default function Escola() {
       <h1 style={{ margin: "2rem 0rem" }}>Cadastro de Escolas</h1>
 
       <form onSubmit={onSubmit}>
-        <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={3}>
-          {/* Mapeamento dos campos */}
-          {campos.map((campo) => (
-            <Box gridColumn={campo.gridColumn} key={campo.name}>
-              <TextField
-                fullWidth
-                label={campo.label}
-                name={campo.name}
-                value={campo.value}
-                onChange={campo.onChange}
-                disabled={!editar}
-                size="small"
-                error={campo.error}
-                helperText={campo.helperText}
-              />
-            </Box>
-          ))}
-        </Box>
-
+        <MyForm campos={campos} disabled={!editar} />
         <div style={{ marginTop: "2rem", display: "flex", gap: "1rem" }}>
           {/* Se editar = false o botão disabilita */}
           <Button
